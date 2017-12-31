@@ -1,0 +1,29 @@
+{
+  "name": "react_express_boilerplate",
+  "version": "1.0.0",
+  "description": "boilerplate with react as front-end, express as back-end",
+  "main": "index.js",
+  "author": "tony ng <tony.hokan@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "scripts": {
+    "setup": "yarn install && cd react_client && yarn install",
+    "dev": "cd react_client && yarn start",
+    "test": "cd react_client && yarn test",
+    "build": "cd react_client && yarn build",
+    "server:prod": "NODE_ENV=production node express_server/server.js",
+    "server:dev": "NODE_ENV=development nodemon express_server/server.js",
+    "lint": "eslint ./express_server"
+  },
+  "devDependencies": {
+    "eslint": "^4.14.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.14.3"
+  }
+}

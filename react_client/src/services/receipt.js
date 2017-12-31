@@ -22,6 +22,7 @@ function productTaxByLocation (location, productPrice, productCategory, qty) {
 }
 
 function calculateCartSubTotalTaxTotal (location, shoppingCart) {
+  console.log()
   let subtotal = new BigNumber(0.0)
   let tax = new BigNumber(0.0)
   Object.keys(shoppingCart).forEach((key) => {

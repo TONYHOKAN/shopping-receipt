@@ -4,6 +4,7 @@ import './App.css'
 import { mockProducts } from '../mock_datas/products'
 import Product from './Product'
 import { LOCATION_TAX } from '../configuration'
+import Receipt from './Receipt'
 
 const style = {
   leftPanel: {
@@ -137,6 +138,9 @@ class App extends Component {
             </Card>
             <Card style={style.receipt}>
               <CardHeader>Shopping Receipt</CardHeader>
+              <CardBody>
+                <Receipt location={this.state.location} shoppingCart={this.state.shoppingCart}/>
+              </CardBody>
             </Card>
           </div>
         </div>

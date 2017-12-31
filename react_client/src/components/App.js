@@ -47,6 +47,7 @@ class App extends Component {
     super(props)
     this.addToCart = this.addToCart.bind(this)
     this.toggle = this.toggle.bind(this)
+    this.removeProductFromCart = this.removeProductFromCart.bind(this)
     this.state = {
       productList: mockProducts,
       shoppingCart: {},
@@ -76,6 +77,16 @@ class App extends Component {
     this.setState({ location: location })
   }
 
+  removeProductFromCart (productId) {
+    let cloneShoppingCartObject = Object.assign({}, this.state.shoppingCart)
+    delete cloneShoppingCartObject[productId.toString()]
+    this.setState({ shoppingCart: cloneShoppingCartObject })
+  }
+
+  clearShoppingCart () {
+    this.setState({ shoppingCart: {} })
+  }
+
   render () {
     return (
       <div style={{ display: 'flex', height: '100%', minWith: '220px' }}>
@@ -98,6 +109,7 @@ class App extends Component {
               })}
             </DropdownMenu>
           </Dropdown>
+          <Button style={{ width: '100%' }} color="danger" onClick={() => this.clearShoppingCart()} >Clear Cart</Button>
         </div>
         <div style={style.rightPanel}>
           <div style={style.container}>
@@ -114,6 +126,14 @@ class App extends Component {
             </Card>
             <Card style={style.shoppingCart}>
               <CardHeader>Shopping Cart</CardHeader>
+              <CardBody style={style.shoppingCartCardBody}>
+                {Object.keys(this.state.shoppingCart).map(key => (
+                  <Product
+                    key={`product_${this.state.shoppingCart[key].id}`}
+                    product={this.state.shoppingCart[key]}
+                    actionButton={<Button color="primary" onClick={() => this.removeProductFromCart(this.state.shoppingCart[key].id)}>Remove</Button>}
+                  />))}
+              </CardBody>
             </Card>
             <Card style={style.receipt}>
               <CardHeader>Shopping Receipt</CardHeader>

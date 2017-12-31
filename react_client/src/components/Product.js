@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Product = (props) => {
   const { product, actionButton } = props
-  const { name, category, price } = product
+  const { name, category, price, qty } = product
   return (
     <Card style={{ width: '140px', height: '140px', margin: '10px' }}>
       <CardBody style={{ padding: '5px' }}>
@@ -17,6 +17,7 @@ const Product = (props) => {
         <div>
           {category}
         </div>
+        { qty && <div>{qty}</div>}
         { actionButton }
       </CardBody>
     </Card>
@@ -25,7 +26,8 @@ const Product = (props) => {
 
 Product.propTypes = {
   product: PropTypes.object.isRequired,
-  actionButton: PropTypes.node
+  actionButton: PropTypes.node,
+  qty: PropTypes.number
 }
 
 export default Product

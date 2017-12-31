@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import { Card, CardHeader, CardBody, Button } from 'reactstrap'
+import { Card, CardHeader, CardBody, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import './App.css'
 import { mockProducts } from '../mock_datas/products'
 import Product from './Product'
+import { LOCATION_TAX } from '../configuration'
 
 const style = {
   leftPanel: {
     flex: 1,
-    backgroundColor: '#dee2e6'
+    backgroundColor: '#dee2e6',
+    minWidth: '200px'
   },
   rightPanel: {
     flex: 3
@@ -30,6 +32,10 @@ const style = {
     flex: 1,
     minHeight: '220px'
   },
+  shoppingCartCardBody: {
+    display: 'flex',
+    padding: '0px'
+  },
   receipt: {
     flex: 1,
     minHeight: '220px'
@@ -40,9 +46,12 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.addToCart = this.addToCart.bind(this)
+    this.toggle = this.toggle.bind(this)
     this.state = {
       productList: mockProducts,
-      shoppingCart: {}
+      shoppingCart: {},
+      location: 'CA',
+      dropdownOpen: false
     }
   }
 
@@ -59,23 +68,48 @@ class App extends Component {
     this.setState({ shoppingCart: cloneShoppingCartObject })
   }
 
+  toggle () {
+    this.setState({ dropdownOpen: !this.state.dropdownOpen })
+  }
+
+  updateLocation (location) {
+    this.setState({ location: location })
+  }
+
   render () {
     return (
       <div style={{ display: 'flex', height: '100%', minWith: '220px' }}>
         <div style={style.leftPanel}>
-
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} style={{ margin: '10px' }}>
+            <DropdownToggle style={{ width: '100%' }} caret>
+              {LOCATION_TAX[this.state.location].name}
+            </DropdownToggle>
+            <DropdownMenu style={{ width: '100%' }}>
+              {Object.keys(LOCATION_TAX).map((key) => {
+                return (
+                  <DropdownItem
+                    key={`dropdown-item_${key}`}
+                    value={key}
+                    onClick={e => (this.updateLocation(e.target.value))}
+                  >
+                    {LOCATION_TAX[key].name}
+                  </DropdownItem>
+                )
+              })}
+            </DropdownMenu>
+          </Dropdown>
         </div>
         <div style={style.rightPanel}>
           <div style={style.container}>
             <Card style={style.productList}>
               <CardHeader>Product List</CardHeader>
               <CardBody style={style.productListCardBody}>
-                { this.state.productList.map(product => (
+                {this.state.productList.map(product => (
                   <Product
                     key={`product_${product.id}`}
                     product={product}
                     actionButton={<Button color="primary" onClick={() => this.addToCart(product)}>Add to Cart</Button>}
-                  />)) }
+                  />))}
               </CardBody>
             </Card>
             <Card style={style.shoppingCart}>

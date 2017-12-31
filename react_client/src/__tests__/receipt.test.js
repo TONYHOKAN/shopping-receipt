@@ -1,9 +1,12 @@
 import {
-  PRODUCT_CATEGORY_FOOD,
-  PRODUCT_CATEGORY_CLOTHING,
   roundUpSalesTaxNearestZeroZeroPointFive,
   productTaxByLocation
 } from '../services/receipt'
+
+import {
+  PRODUCT_CATEGORY_FOOD,
+  PRODUCT_CATEGORY_CLOTHING
+} from '../configuration'
 
 describe('tests for rounded up to the nearest 0.05', () => {
   test('roundUpSalesTaxNearestZeroZeroPointFive mount should be rounded up to the nearest 0.05 for amount 1.13', () => {

@@ -1,16 +1,6 @@
-const PRODUCT_CATEGORY_FOOD = 'food'
-const PRODUCT_CATEGORY_CLOTHING = 'clothing'
-
-const LOCATION_TAX = {
-  'CA': {
-    rate: 0.0975, // 9.75%
-    exempt: [PRODUCT_CATEGORY_FOOD]
-  },
-  'NY': {
-    rate: 0.0875, // 8.875%
-    exempt: [PRODUCT_CATEGORY_FOOD, PRODUCT_CATEGORY_CLOTHING]
-  }
-}
+import {
+  LOCATION_TAX
+} from '../configuration'
 
 function roundUpSalesTaxNearestZeroZeroPointFive (salesTax) { // rounded up to the nearest 0.05
   return (Math.ceil(salesTax * 20) / 20)
@@ -30,4 +20,4 @@ function productTaxByLocation (location, productPrice, productCategory, qty) {
   return roundUpSalesTaxNearestZeroZeroPointFive(productTaxByLocationNotRounded(location, productPrice, productCategory, qty))
 }
 
-export { PRODUCT_CATEGORY_FOOD, PRODUCT_CATEGORY_CLOTHING, roundUpSalesTaxNearestZeroZeroPointFive, productTaxByLocation }
+export { roundUpSalesTaxNearestZeroZeroPointFive, productTaxByLocation }

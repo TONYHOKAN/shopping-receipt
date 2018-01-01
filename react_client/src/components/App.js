@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, CardHeader, CardBody, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { CardHeader, CardBody, Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import './App.css'
 import { mockProducts } from '../mock_datas/products'
 import Product from './Product'
@@ -13,7 +13,8 @@ const style = {
     minWidth: '200px'
   },
   rightPanel: {
-    flex: 3
+    flex: 3,
+    overflow: 'scroll'
   },
   container: {
     width: '100%',
@@ -22,16 +23,14 @@ const style = {
     flexDirection: 'column'
   },
   productList: {
-    flex: 1,
-    minHeight: '220px'
+    flex: 1
   },
   productListCardBody: {
     display: 'flex',
     padding: '0px'
   },
   shoppingCart: {
-    flex: 1,
-    minHeight: '220px'
+    flex: 1
   },
   shoppingCartCardBody: {
     display: 'flex',
@@ -39,7 +38,7 @@ const style = {
   },
   receipt: {
     flex: 1,
-    minHeight: '220px'
+    display: 'inline'
   }
 }
 
@@ -114,7 +113,7 @@ class App extends Component {
         </div>
         <div style={style.rightPanel}>
           <div style={style.container}>
-            <Card style={style.productList}>
+            <div style={style.productList}>
               <CardHeader>Product List</CardHeader>
               <CardBody style={style.productListCardBody}>
                 {this.state.productList.map(product => (
@@ -124,8 +123,8 @@ class App extends Component {
                     actionButton={<Button color="primary" onClick={() => this.addToCart(product)}>Add to Cart</Button>}
                   />))}
               </CardBody>
-            </Card>
-            <Card style={style.shoppingCart}>
+            </div>
+            <div style={style.shoppingCart}>
               <CardHeader>Shopping Cart</CardHeader>
               <CardBody style={style.shoppingCartCardBody}>
                 {Object.keys(this.state.shoppingCart).map(key => (
@@ -135,13 +134,13 @@ class App extends Component {
                     actionButton={<Button color="primary" onClick={() => this.removeProductFromCart(this.state.shoppingCart[key].id)}>Remove</Button>}
                   />))}
               </CardBody>
-            </Card>
-            <Card style={style.receipt}>
-              <CardHeader>Shopping Receipt</CardHeader>
+            </div>
+            <div style={style.receipt}>
+              <CardHeader>Receipt</CardHeader>
               <CardBody>
                 <Receipt location={this.state.location} shoppingCart={this.state.shoppingCart}/>
               </CardBody>
-            </Card>
+            </div>
           </div>
         </div>
       </div>

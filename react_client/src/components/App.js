@@ -3,7 +3,14 @@ import { CardHeader, CardBody, Button, Dropdown, DropdownToggle, DropdownMenu, D
 import './App.css'
 import { mockProducts } from '../mock_datas/products'
 import Product from './Product'
-import { LOCATION_TAX } from '../configuration'
+import {
+  LOCATION_TAX,
+  PRODUCT_CATEGORY_FOOD,
+  PRODUCT_CATEGORY_BOOK,
+  PRODUCT_CATEGORY_STATIONARY,
+  PRODUCT_CATEGORY_CLOTHING
+} from '../configuration'
+
 import Receipt from './Receipt'
 
 const style = {
@@ -48,6 +55,7 @@ class App extends Component {
     this.addToCart = this.addToCart.bind(this)
     this.toggle = this.toggle.bind(this)
     this.removeProductFromCart = this.removeProductFromCart.bind(this)
+    this.createTestCart = this.createTestCart.bind(this)
     this.state = {
       productList: mockProducts,
       shoppingCart: {},
@@ -87,6 +95,67 @@ class App extends Component {
     this.setState({ shoppingCart: {} })
   }
 
+  createTestCart (caseNumber) {
+    switch (caseNumber) {
+      case 1:
+        this.setState({
+          shoppingCart: {
+            '1': {
+              id: 1,
+              'name': 'book',
+              'category': PRODUCT_CATEGORY_BOOK,
+              'price': 17.99,
+              'qty': 1
+            },
+            '2': {
+              id: 2,
+              'name': 'potato chips',
+              'category': PRODUCT_CATEGORY_FOOD,
+              'price': 3.99,
+              'qty': 1
+            }
+          }
+        })
+        break
+      case 2:
+        this.setState({ shoppingCart: {
+          '1': {
+            id: 1,
+            'name': 'book',
+            'category': PRODUCT_CATEGORY_BOOK,
+            'price': 17.99,
+            'qty': 1
+          },
+          '3': {
+            id: 3,
+            'name': 'pencil',
+            'category': PRODUCT_CATEGORY_STATIONARY,
+            'price': 2.99,
+            'qty': 3
+          }
+        } })
+        break
+      case 3:
+        this.setState({ shoppingCart: {
+          '3': {
+            id: 3,
+            'name': 'pencil',
+            'category': PRODUCT_CATEGORY_STATIONARY,
+            'price': 2.99,
+            'qty': 2
+          },
+          '4': {
+            id: 4,
+            'name': 'shirt',
+            'category': PRODUCT_CATEGORY_CLOTHING,
+            'price': 29.99,
+            'qty': 1
+          }
+        } })
+        break
+    }
+  }
+
   render () {
     return (
       <div style={{ display: 'flex', height: '100%', minWith: '220px' }}>
@@ -109,7 +178,10 @@ class App extends Component {
               })}
             </DropdownMenu>
           </Dropdown>
-          <Button style={{ width: '100%' }} color="danger" onClick={() => this.clearShoppingCart()} >Clear Cart</Button>
+          <Button style={{ width: '100%' }} outline color="danger" onClick={() => this.clearShoppingCart()}>Clear Cart</Button>
+          <Button style={{ width: '100%' }} outline color="primary" onClick={() => this.createTestCart(1)}>Use case 1</Button>
+          <Button style={{ width: '100%' }} outline color="primary" onClick={() => this.createTestCart(2)}>Use case 2</Button>
+          <Button style={{ width: '100%' }} outline color="primary" onClick={() => this.createTestCart(3)}>Use case 3</Button>
         </div>
         <div style={style.rightPanel}>
           <div style={style.container}>

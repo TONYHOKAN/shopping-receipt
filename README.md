@@ -1,14 +1,19 @@
 # How to use
 clone the project
+
 `git clone https://github.com/TONYHOKAN/shopping-receipt.git`
+
 and run
+
 `cd shopping-receipt && yarn setup`
 
 # Start Local Development
 `yarn dev`
+
 Using create-react-app web pack dev server to run react_client.
 
 `yarn server:dev`
+
  Using Node.js express server as backend API server. 
 
 # Product Build
@@ -19,8 +24,11 @@ Using create-react-app web pack dev server to run react_client.
 
 # Docker
 build image
+
 `docker build -t shopping-receipt .`
+
 start image
+
 `docker run -p 80:80 -d shopping-receipt`
 
 # What next?

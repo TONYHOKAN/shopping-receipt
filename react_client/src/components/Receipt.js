@@ -7,15 +7,18 @@ import { calculateCartSubTotalTaxTotal } from '../services/receipt'
 const style = {
   itemColumn: {
     border: 'none',
-    textAlign: 'left'
+    textAlign: 'left',
+    width: '30%'
   },
   priceColumn: {
     border: 'none',
-    textAlign: 'right'
+    textAlign: 'right',
+    width: '35%'
   },
   qtyColumn: {
     border: 'none',
-    textAlign: 'right'
+    textAlign: 'right',
+    width: '35%'
   }
 }
 
@@ -26,7 +29,7 @@ const Receipt = (props) => {
   }
   const { subtotal, tax, total } = calculateCartSubTotalTaxTotal(location, shoppingCart)
   return (
-    <Table size="sm" className="borderless">
+    <Table style={{ maxWidth: '500px' }} size="sm">
       <thead style={{ border: 'none' }}>
         <tr>
           <th style={style.itemColumn}>item</th>

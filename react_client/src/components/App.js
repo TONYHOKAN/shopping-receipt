@@ -15,9 +15,8 @@ import Receipt from './Receipt'
 
 const style = {
   leftPanel: {
-    flex: 1,
     backgroundColor: '#dee2e6',
-    minWidth: '200px'
+    width: '200px'
   },
   rightPanel: {
     flex: 3,
@@ -34,14 +33,16 @@ const style = {
   },
   productListCardBody: {
     display: 'flex',
-    padding: '0px'
+    padding: '0px',
+    flexWrap: 'wrap'
   },
   shoppingCart: {
     flex: 1
   },
   shoppingCartCardBody: {
     display: 'flex',
-    padding: '0px'
+    padding: '0px',
+    flexWrap: 'wrap'
   },
   receipt: {
     flex: 1,
@@ -192,7 +193,7 @@ class App extends Component {
                   <Product
                     key={`product_${product.id}`}
                     product={product}
-                    actionButton={<Button color="primary" onClick={() => this.addToCart(product)}>Add to Cart</Button>}
+                    actionButton={<Button style={{ width: '100%' }} color="primary" onClick={() => this.addToCart(product)}>Add to Cart</Button>}
                   />))}
               </CardBody>
             </div>
@@ -203,7 +204,7 @@ class App extends Component {
                   <Product
                     key={`product_${this.state.shoppingCart[key].id}`}
                     product={this.state.shoppingCart[key]}
-                    actionButton={<Button color="primary" onClick={() => this.removeProductFromCart(this.state.shoppingCart[key].id)}>Remove</Button>}
+                    actionButton={<Button style={{ width: '100%' }} color="danger" onClick={() => this.removeProductFromCart(this.state.shoppingCart[key].id)}>Remove</Button>}
                   />))}
               </CardBody>
             </div>

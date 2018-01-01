@@ -209,7 +209,7 @@ class App extends Component {
               </CardBody>
             </div>
             <div style={style.receipt}>
-              <CardHeader>Receipt</CardHeader>
+              <CardHeader>Receipt - {LOCATION_TAX[this.state.location].name}</CardHeader>
               <CardBody>
                 <Receipt location={this.state.location} shoppingCart={this.state.shoppingCart}/>
               </CardBody>

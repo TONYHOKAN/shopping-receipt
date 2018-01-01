@@ -42,7 +42,7 @@ const Receipt = (props) => {
           return (
             <tr key={`cart-item_${key}`}>
               <td style={style.itemColumn}>{shoppingCart[key].name}</td>
-              <td style={style.priceColumn}>{shoppingCart[key].price.toFixed(2)}</td>
+              <td style={style.priceColumn}>{`$${shoppingCart[key].price.toFixed(2)}`}</td>
               <td style={style.qtyColumn}>{shoppingCart[key].qty}</td>
             </tr>
           )
